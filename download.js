@@ -56,6 +56,7 @@ $(document).ready(function () {
 					console.log("last one");
 					for (var k = 0; k < imageArray.length; k++) {
 						var data = imageArray[k];
+						console.log("image");
 						img.file(data.filename, data.base64, {base64: true});
 					}
 					var content = zip.generate({type:"blob"});
