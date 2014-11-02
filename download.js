@@ -34,8 +34,8 @@ $(document).ready(function () {
       var selectedsrc = $(this).children("img").attr("src");
       var splits = selectedsrc.split("/");
 			console.log(splits);
-      var placement = splits[5];
-      var unwrapped = splits[7].substr(0, splits[7].lastIndexOf("_"));
+      var placement = splits[1];
+      var unwrapped = splits[3].substr(0, splits[3].lastIndexOf("_"));
 
       var zip = new JSZip();
       // see FileSaver.js
