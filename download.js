@@ -30,38 +30,30 @@ $(document).ready(function () {
     $(this).parent().addClass("selected");
   })
   $("#download").click(function() {
+		var zip = new JSZip();
     $(".selected").each(function() {
       var selectedsrc = $(this).children("img").attr("src");
       var splits = selectedsrc.split("/");
-			console.log(splits);
       var placement = splits[1];
       var unwrapped = splits[3].substr(0, splits[3].lastIndexOf("_"));
-
-      var zip = new JSZip();
-      // see FileSaver.js
-
       for (var i = 0; i < drawables.length; i++) {
         var item = drawables[i];
         var img = zip.folder(item.n);
-
         for (var y = 0; y < color.length; y++) {
           var curcolor = color[y];
           for (var z = 0; z < ppi.length; z++) {
             var curppi = ppi[z];
             var filename = unwrapped + "_" + curcolor.c + "_" + curppi.p + "dp.png";
             var string = master + placement + "/" + item.n + "/" + filename;
-						console.log(string);
             convertImgToBase64(string, function(base64Img){
               img.file(filename, base64Img, {base64: true});
-
+							console.log(base64Img)
             });
           }
-
         }
       }
-      var content = zip.generate({type:"blob"});
-      saveAs(content, "example.zip");
-
     })
+		var content = zip.generate({type:"blob"});
+		saveAs(content, "example.zip");
   })
 });
