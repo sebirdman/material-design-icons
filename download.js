@@ -21,6 +21,9 @@ var drawables = [{n: "drawable-mdpi"},{n: "drawable-hdpi"},{n: "drawable-xhdpi"}
 var ppi = [{p: 18},{p: 24},{p: 36},{p: 48}];
 var color = [{c: "white"},{c: "black"}];
 var imageArray = [];
+var imagetobase = 0;
+var imagebased = 0;
+
 $(document).ready(function () {
   //$("img").each(function() {
   //    var src = $(this).attr('src');
@@ -45,8 +48,13 @@ $(document).ready(function () {
 	            var curppi = ppi[z];
 	            var filename = unwrapped + "_" + curcolor.c + "_" + curppi.p + "dp.png";
 	            var string = master + placement + "/" + item.n + "/" + filename;
+							imagetobase = imagetobase + 1;
 	            convertImgToBase64(string, function(base64Img) {
+								imagebased = imagebased + 1;
 								imageArray.push({"filename":filename,"base64":base64Img});
+								if (imagebased == imagetobase) {
+									console.log("final got");
+								}
 	            });
 	          }
 	        }
