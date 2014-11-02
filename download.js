@@ -33,6 +33,7 @@ $(document).ready(function () {
     $(".selected").each(function() {
       var selectedsrc = $(this).children("img").attr("src");
       var splits = selectedsrc.split("/");
+			console.log(splits);
       var placement = splits[5];
       var unwrapped = splits[7].substr(0, splits[7].lastIndexOf("_"));
 
